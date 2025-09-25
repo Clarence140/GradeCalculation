@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>High School Grade Calculator</title>
+</head>
+<body>
+    <h1>High School Grade Calculator</h1>
+    <form id="gradeForm">
+        <label for="math">Math:</label>
+        <input type="number" id="math" name="math" min="0" max="100" required><br><br>
+        <label for="science">Science:</label>
+        <input type="number" id="science" name="science" min="0" max="100" required><br><br>
+        <label for="english">English:</label>
+        <input type="number" id="english" name="english" min="0" max="100" required><br><br>
+        <label for="history">History:</label>
+        <input type="number" id="history" name="history" min="0" max="100" required><br><br>
+        <button type="button" onclick="calculateGrade()">Calculate Grade</button>
+    </form>
+    <h2 id="result"></h2>
+    <script>
+        function calculateGrade() {
+            const math = parseFloat(document.getElementById('math').value);
+            const science = parseFloat(document.getElementById('science').value);
+            const english = parseFloat(document.getElementById('english').value);
+            const history = parseFloat(document.getElementById('history').value);
+            if (isNaN(math) || isNaN(science) || isNaN(english) || isNaN(history)) {
+                document.getElementById('result').textContent = 'Please enter all grades.';
+                return;
+            }
+            const average = (math + science + english + history) / 4;
+            let remark = '';
+            if (average >= 90) {
+                remark = 'Excellent';
+            } else if (average >= 80) {
+                remark = 'Very Good';
+            } else if (average >= 70) {
+                remark = 'Good';
+            } else if (average >= 60) {
+                remark = 'Passed';
+            } else {
+                remark = 'Failed';
+            }
+            document.getElementById('result').textContent = `Average: ${average.toFixed(2)} - ${remark}`;
+        }
+    </script>
+</body>
+</html>

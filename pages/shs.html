@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior High School Grade Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2d6cdf;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+    }
+    nav {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+    nav a {
+      color: #2d6cdf;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #1a3e8a;
+    }
+    main {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 2rem;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: #444;
+      line-height: 1.6;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 10px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .result {
+      margin-top: 18px;
+      background: #f9fafb;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .result p {
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Grade Calculator Website</h1>
+  </header>
+  <nav>
+    <a href="C:\Users\Bossy\Documents\Calcu\GradeCalculation/index.html">Home</a>
+    <a href="elementary.html">Elementary</a>
+    <a href="highschool.html">High School</a>
+    <a href="college.html">College</a>
+  </nav>
+  <main>
+    <h2>Senior High School Grade Calculator</h2>
+
+    <!-- Calculator Section -->
+    <label for="major">Major Exam (100 max):</label>
+    <input type="number" id="major" placeholder="Enter score">
+
+    <label for="performance">Performance (100 max):</label>
+    <input type="number" id="performance" placeholder="Enter score">
+
+    <label for="written">Written (100 max):</label>
+    <input type="number" id="written" placeholder="Enter score">
+
+    <button onclick="calculateGrade()">Compute Grade</button>
+
+    <div id="output" class="result" style="display:none;">
+      <p id="majorResult"></p>
+      <p id="performanceResult"></p>
+      <p id="writtenResult"></p>
+      <hr>
+      <p><strong>Final Grade: <span id="finalGrade"></span></strong></p>
+    </div>
+  </main>
+
+  <script>
+    function calculateGrade() {
+      let major = parseFloat(document.getElementById("major").value) || 0;
+      let performance = parseFloat(document.getElementById("performance").value) || 0;
+      let written = parseFloat(document.getElementById("written").value) || 0;
+
+      // Weighted calculations
+      let majorScore = major * 0.60;
+      let performanceScore = performance * 0.20;
+      let writtenScore = written * 0.20;
+
+      let finalGrade = majorScore + performanceScore + writtenScore;
+
+      // Show results
+      document.getElementById("majorResult").textContent = `Major Exam (60%): ${majorScore.toFixed(2)}`;
+      document.getElementById("performanceResult").textContent = `Performance (20%): ${performanceScore.toFixed(2)}`;
+      document.getElementById("writtenResult").textContent = `Written (20%): ${writtenScore.toFixed(2)}`;
+      document.getElementById("finalGrade").textContent = finalGrade.toFixed(2);
+
+      document.getElementById("output").style.display = "block";
+    }
+  </script>
+</body>
+</html>
