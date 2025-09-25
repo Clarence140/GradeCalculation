@@ -3,8 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <title>Elementary Grade Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: 48px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .left {
+            flex: 1;
+            min-width: 340px;
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            max-width: 400px;
+        }
+        .right {
+            flex: 1;
+            background: rgba(255,255,255,0.85);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            padding: 32px 28px;
+            margin-top: 48px;
+            max-width: 400px;
+        }
+        .right h2 {
+            color: #333;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+        .right ol {
+            color: #555;
+            font-size: 1.18rem;
+            line-height: 1.7;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 24px;
+            font-size: 2.2rem;
+        }
+        form {
+            background: #fff;
+            padding: 32px 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 320px;
+        }
+        label {
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        input[type="number"] {
+            padding: 10px 14px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.18rem;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            transition: border-color 0.2s;
+        }
+        input[type="number"]:focus {
+            border-color: #fda085;
+            outline: none;
+        }
+        button {
+            background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(253,160,133,0.12);
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #fda085 0%, #f6d365 100%);
+        }
+        #result {
+            margin-top: 28px;
+            color: #333;
+            font-size: 1.45rem;
+            font-weight: 600;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Content to be added by Member 1 -->
+
+    <div class="container">
+        <div class="left">
+            <h1>Elementary Grade Calculator</h1>
+            <form id="gradeCalculator">
+                <div>
+                    <label for="math">Math</label>
+                    <input type="number" id="math" name="math" min="0" max="100" required>
+                </div>
+                <div>
+                    <label for="english">English</label>
+                    <input type="number" id="english" name="english" min="0" max="100" required>
+                </div>
+                <div>
+                    <label for="science">Science</label>
+                    <input type="number" id="science" name="science" min="0" max="100" required>
+                </div>
+                <div>
+                    <label for="filipino">Filipino</label>
+                    <input type="number" id="filipino" name="filipino" min="0" max="100" required>
+                </div>
+                <div>
+                    <label for="ap">Araling Panlipunan</label>
+                    <input type="number" id="ap" name="ap" min="0" max="100" required>
+                </div>
+                <div>
+                    <label for="pe">P.E</label>
+                    <input type="number" id="pe" name="pe" min="0" max="100" required>
+                </div>
+                <button type="button" onclick="calculateAverage()">Calculate Average</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <div class="right">
+            <h2>How to Calculate Your Grades</h2>
+            <ol>
+                <li>Enter your grades for each subject in the calculator on the left.</li>
+                <li>Make sure each grade is between 0 and 100.</li>
+                <li>Click the <b>Calculate Average</b> button.</li>
+                <li>The calculator will add all your grades together.</li>
+                <li>It will then divide the total by the number of subjects (6).</li>
+                <li>Your average grade will be shown below the calculator.</li>
+                <li>If any grade is missing or invalid, you will see an error message.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            const subjects = ["math", "english", "science", "filipino", "ap", "pe"];
+            let total = 0;
+            let count = subjects.length;
+            for (let subject of subjects) {
+                let value = parseFloat(document.getElementById(subject).value);
+                if (isNaN(value) || value < 0 || value > 100) {
+                    document.getElementById("result").innerText = "Please enter valid grades (0-100) for all subjects.";
+                    return;
+                }
+                total += value;
+            }
+            let average = total / count;
+            document.getElementById("result").innerText = `Average Grade: ${average.toFixed(2)}`;
+        }
+    </script>
+
+
+
+
 </body>
 </html>
