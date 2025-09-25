@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 2rem 0 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+        nav a {
+            color: #2d6cdf;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #1a3e8a;
+        }
+        main {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 2rem;
+        }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        p {
+            color: #444;
+            line-height: 1.6;
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem;
+            }
+            nav {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Grade Calculator Website</h1>
+    </header>
+    <nav>
+        <a href="pages/elementary.html">Elementary</a>
+        <a href="pages/highschool.html">High School</a>
+        <a href="pages/shs.html">Senior High School</a>
+        <a href="pages/college.html">College</a>
+    </nav>
+    <main>
+        <h2>Welcome!</h2>
+        <p>
+            This tool helps students compute their grades from Elementary up to College. <br>
+            Select your education level above to use the appropriate grade calculator. Each calculator applies the grading rules for its level, making it easy to check your average, weighted grades, or GPA.<br>
+            <strong>One clear purpose:</strong> grade computation for every learner.
+        </p>
+    </main>
+    <script>
+        // No interactive JS needed for homepage navigation
+    </script>
+</body>
+</html>
